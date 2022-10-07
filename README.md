@@ -1,9 +1,10 @@
 # docusaurus-test
 
-## [Documents](docs/documents)
+## [Documents](docusaurus-site\docs\documents)
 
-- [Link1](docs/documents/B.md)
+- [Link1](docusaurus-site\docs\documents\A.md)
+- [B link](docusaurus-site\docs\documents\B.md)
 
-## [Apps](docs/Apps)
+## [Apps](docusaurus-site\docs\Apps)
 
-- [Link 2](docs/Apps/A.md)
+- [Link 2](docusaurus-site\docs\Apps\A.md)
