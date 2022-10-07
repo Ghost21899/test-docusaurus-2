@@ -9,7 +9,7 @@ const config = {
   title: 'My Site',
   tagline: 'Dinosaurs are cool',
   url: 'https://Ghost21899.github.io',
-  baseUrl: '/test-docusaurus-2',
+  baseUrl: '/test-docusaurus-2/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
