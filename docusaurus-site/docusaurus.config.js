@@ -102,19 +102,6 @@ const config = {
               },
             ],
           },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/Ghost21899/test-docusaurus-2',
-              },
-            ],
-          },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} ProjectName, Inc. Built with Docusaurus.`,
       },
