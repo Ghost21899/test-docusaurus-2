@@ -40,10 +40,11 @@ jobs:
         run: |
           git config user.email "niranjan.m2199@gmail.com"
           git config user.name "Ghost21899"
+          
       
       - name: Install and build
         run: npm install -g yarn
 
-      - run: cd docusaurus-site && yarn install --frozen-lockfile
+      - run: cd docusaurus-site
 
-      - run: GIT_USER=Ghost21899 yarn deploy
+      - run: GIT_USER=Ghost21899 GIT_PASS=${{ secrets.GITHUB_TOKEN }} yarn deploy
