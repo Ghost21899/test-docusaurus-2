@@ -33,7 +33,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install & Build
-        run: cd docusaurus-site && npm install && npm run build
+        run: cd docusaurus-site && npm install && npm install --save @easyops-cn/docusaurus-search-local && npm run build
 
       # Runs a set of commands using the runners shell
       - name: Deploy
