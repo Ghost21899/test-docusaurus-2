@@ -1,0 +1,43 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Auto Deploy Github pages
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches:
+      - "Branch1"
+      
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }}  # Recommended if you intend to make multiple deployments in quick succession.
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      # Runs a single command using the runners shell
+      - name: Install & Build
+        run: cd docusaurus-site && npm install && npm run build
+
+      # Runs a set of commands using the runners shell
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: Build
+          folder: docusaurus-site/build
