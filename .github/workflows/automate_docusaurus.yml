@@ -37,7 +37,4 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: Build
-          folder: docusaurus-site/build
+        run: cd docusaurus-site && GIT_USER=Ghost21899 yarn deploy
