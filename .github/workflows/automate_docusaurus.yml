@@ -38,7 +38,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Deploy
         run: |
+          /usr/bin/git config user.email "niranjan.m2199@gmail.com"
+          /usr/bin/git config user.name "Ghost21899"
           cd docusaurus-site
-          git config user.email "niranjan.m2199@gmail.com"
-          git config user.name "Ghost21899"
           GIT_USER=Ghost21899 yarn deploy
