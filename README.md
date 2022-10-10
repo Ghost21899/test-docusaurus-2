@@ -1,10 +1,10 @@
 # docusaurus-test
 
-## [Documents](docusaurus-site\docs\documents)
+## [Documents](https://ghost21899.github.io/test-docusaurus-2/docs/category/documents)
 
-- [Link1](docusaurus-site\docs\documents\A.md)
-- [B link](docusaurus-site\docs\documents\B.md)
+- [Link1](https://ghost21899.github.io/test-docusaurus-2/docs/documents/A)
 
-## [Apps](docusaurus-site\docs\Apps)
+## [Apps](https://ghost21899.github.io/test-docusaurus-2/docs/category/Apps)
 
-- [Link 2](docusaurus-site\docs\Apps\A.md)
+- [Link 2](https://ghost21899.github.io/test-docusaurus-2/docs/Apps/A)
+- [Link 3](https://ghost21899.github.io/test-docusaurus-2/docs/Apps/B)
