@@ -36,9 +36,14 @@ jobs:
         run: cd docusaurus-site && npm install && npm install --save @easyops-cn/docusaurus-search-local && npm run build
 
       # Runs a set of commands using the runners shell
-      - name: Deploy
+      - name: Configure Git
         run: |
-          /usr/bin/git config user.email "niranjan.m2199@gmail.com"
-          /usr/bin/git config user.name "Ghost21899"
-          cd docusaurus-site
-          GIT_USER=Ghost21899 yarn deploy
+          git config user.email "niranjan.m2199@gmail.com"
+          git config user.name "Ghost21899"
+      
+      - name: Install and build
+        run: npm install -g yarn
+
+      - run: cd docusaurus-site && yarn install --frozen-lockfile
+
+      - run: GIT_USER=Ghost21899 yarn deploy
