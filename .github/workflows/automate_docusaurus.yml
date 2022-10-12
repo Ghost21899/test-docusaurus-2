@@ -7,7 +7,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches:
-      - "Branch1"
+      - "main"
       
 
   # Allows you to run this workflow manually from the Actions tab
@@ -35,11 +35,5 @@ jobs:
       - name: Install & Build
         run: cd docusaurus-site && npm install && npm install --save @easyops-cn/docusaurus-search-local && npm run build
 
-      # Runs a set of commands using the runners shell
-      - name: Configure Git
-        run: |
-          git config user.email "niranjan.m2199@gmail.com"
-          git config user.name "Ghost21899"
-          
       - name: Deploy
         run: cd docusaurus-site && GIT_USER=Ghost21899 GIT_PASS=${{ secrets.GITHUB_TOKEN }} yarn deploy
