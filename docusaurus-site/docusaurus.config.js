@@ -19,7 +19,7 @@ const config = {
   organizationName: 'Ghost21899', // Usually your GitHub org/user name.
   projectName: 'test-docusaurus-2', // Usually your repo name.
   trailingSlash: false,
-  deploymentBranch: 'docusaurus',
+  deploymentBranch: 'build',
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
