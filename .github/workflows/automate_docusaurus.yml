@@ -22,7 +22,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: working-directory: ./docusaurus-site
+        working-directory: ./docusaurus-site
     
     strategy:
       matrix:
