@@ -13,11 +13,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-env:
-  Folder: build
-  #Deployment Branch
-  Branch: Build
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -43,21 +38,18 @@ jobs:
     #cd docusaurus-site && GIT_USER=${{ github.actor }} GIT_PASS=${{ secrets.GITHUB_TOKEN }} yarn deploy
     #/usr/bin/
         
-      - name: Deploy
-        run: |
-          npm install --global yarn
-          git config user.name "${{ github.actor }}"
-          git config user.email "niranjan.m2199@gmail.com" 
-          git remote rm origin
-          git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-          git remote add origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
-          git fetch --no-recurse-submodules --depth=1 origin  ${{ env.Branch }}
-          git worktree add --no-checkout --detach github-pages-deploy-action-temp-deployment-folder
-          git checkout -B Build origin/Buildgit checkout -B ${{ env.Branch }} origin/${{ env.Branch }}
-          chmod -R +rw /home/runner/work/test-docusaurus-2/test-docusaurus-2/docusaurus-site/build
-          rsync -q -av --checksum --progress /home/runner/work/test-docusaurus-2/test-docusaurus-2/docusaurus-site/build/. github-pages-deploy-action-temp-deployment-folder --delete --exclude CNAME --exclude .ssh --exclude .git --exclude .github
-          git add --all .
-          git push --force https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git Build
-          chmod -R +rw github-pages-deploy-action-temp-deployment-folder
-          git worktree remove github-pages-deploy-action-temp-deployment-folder --force
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Build output to publish to the `gh-pages` branch:
+          publish_dir: docusaurus-site/build
+          publish_branch: deployment-branch
+          # The following lines assign commit authorship to the official
+          # GH-Actions bot for deploys to `gh-pages` branch:
+          # https://github.com/actions/checkout/issues/13#issuecomment-724415212
+          # The GH actions bot is used by default if you didn't specify the two fields.
+          # You can swap them out with your own user credentials.
+          user_name: ${{ github.actor }}
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com
           
