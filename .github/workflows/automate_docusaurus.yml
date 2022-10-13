@@ -22,7 +22,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: ./docusaurus-site
+        working-directory: working-directory: ./docusaurus-site
     
     strategy:
       matrix:
@@ -37,7 +37,8 @@ jobs:
         with:
           node-version: 18
           cache: npm
-
+          path: ./docusaurus-site
+        
       - name: Install dependencies
         run: npm ci && npm install --save @easyops-cn/docusaurus-search-local
         
