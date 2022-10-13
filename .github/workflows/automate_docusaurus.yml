@@ -13,6 +13,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  Folder: build
+  #Deployment Branch
+  Branch: Build
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -35,5 +40,24 @@ jobs:
       - name: Install & Build
         run: cd docusaurus-site && npm install && npm install --save @easyops-cn/docusaurus-search-local && npm run build
         
+    #cd docusaurus-site && GIT_USER=${{ github.actor }} GIT_PASS=${{ secrets.GITHUB_TOKEN }} yarn deploy
+    #/usr/bin/
+        
       - name: Deploy
-        run: cd docusaurus-site && npm install --global yarn && git config user.name "${{ github.actor }}" && git config user.email "niranjan.m2199@gmail.com" && GIT_USER=${{ github.actor }} GIT_PASS=${{ secrets.GITHUB_TOKEN }} yarn deploy
+        run: |
+          npm install --global yarn
+          git config user.name "${{ github.actor }}"
+          git config user.email "niranjan.m2199@gmail.com" 
+          git remote rm origin
+          git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git remote add origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+          git fetch --no-recurse-submodules --depth=1 origin  ${{ env.Branch }}
+          git worktree add --no-checkout --detach github-pages-deploy-action-temp-deployment-folder
+          git checkout -B Build origin/Buildgit checkout -B ${{ env.Branch }} origin/${{ env.Branch }}
+          chmod -R +rw /home/runner/work/test-docusaurus-2/test-docusaurus-2/docusaurus-site/build
+          rsync -q -av --checksum --progress /home/runner/work/test-docusaurus-2/test-docusaurus-2/docusaurus-site/build/. github-pages-deploy-action-temp-deployment-folder --delete --exclude CNAME --exclude .ssh --exclude .git --exclude .github
+          git add --all .
+          git push --force https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git Build
+          chmod -R +rw github-pages-deploy-action-temp-deployment-folder
+          git worktree remove github-pages-deploy-action-temp-deployment-folder --force
+          
