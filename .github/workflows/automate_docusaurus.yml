@@ -34,8 +34,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install & Build
         run: cd docusaurus-site && npm install && npm install --save @easyops-cn/docusaurus-search-local && npm run build
+        
       - name: Deploy
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "niranjan.m2199@gmail.com"
-          cd docusaurus-site && GIT_USER="${{ github.actor }}" GIT_PASS=${{ secrets.GITHUB_TOKEN }} yarn deploy
+          cd docusaurus-site && GIT_USER=${{ github.actor }} GIT_PASS=${{ secrets.GITHUB_TOKEN }} yarn deploy
