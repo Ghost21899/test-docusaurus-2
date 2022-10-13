@@ -29,13 +29,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
       - name: Install & Build
         run: cd docusaurus-site && npm install && npm install --save @easyops-cn/docusaurus-search-local && npm run build
-        #git config user.email "niranjan.m2199@gmail.com"
       - name: Deploy
         run: |
-          git config user.name "Ghost21899"
-          cd docusaurus-site && GIT_USER=Ghost21899 GIT_PASS=${{ secrets.GITHUB_TOKEN }} yarn deploy
+          git config user.name ${{ github.actor }}
+          git config user.email "niranjan.m2199@gmail.com"
+          cd docusaurus-site && GIT_USER=${{ github.actor }} GIT_PASS=${{ secrets.GITHUB_TOKEN }} yarn deploy
