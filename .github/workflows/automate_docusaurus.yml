@@ -36,4 +36,4 @@ jobs:
         run: cd docusaurus-site && npm install && npm install --save @easyops-cn/docusaurus-search-local && npm run build
         
       - name: Deploy
-        run: cd docusaurus-site && git config user.name "${{ github.actor }}" && git config user.email "niranjan.m2199@gmail.com" && GIT_USER=${{ github.actor }} GIT_PASS=${{ secrets.GITHUB_TOKEN }} yarn deploy
+        run: cd docusaurus-site && npm install --global yarn && git config user.name "${{ github.actor }}" && git config user.email "niranjan.m2199@gmail.com" && GIT_USER=${{ github.actor }} GIT_PASS=${{ secrets.GITHUB_TOKEN }} yarn deploy
